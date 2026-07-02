@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h1 class="mb-4">
+        📊 Research Dashboard
+    </h1>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5>📄 Documents</h5>
+                    <h2>{{ data.total_documents }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5>📑 Chunks</h5>
+                    <h2>{{ data.total_chunks }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5>🧠 Embeddings</h5>
+                    <h2>{{ data.total_embeddings }}</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="my-5">
+
+    <h3>📂 Uploaded Documents</h3>
+
+    <ul class="list-group">
+
+        {% for file in data.uploaded_files %}
+
+        <li class="list-group-item">
+            📄 {{ file }}
+        </li>
+
+        {% else %}
+
+        <li class="list-group-item text-muted">
+            No documents uploaded yet.
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+</div>
+
+{% endblock %}

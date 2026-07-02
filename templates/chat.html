@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">💬 AI Research Chat</h1>
+
+<form method="POST">
+
+    <div class="mb-3">
+
+        <textarea
+            class="form-control"
+            name="question"
+            rows="3"
+            placeholder="Ask anything about your uploaded paper..."
+            required></textarea>
+
+    </div>
+
+    <button class="btn btn-primary">
+
+        Ask AI
+
+    </button>
+
+    <a href="/clear_chat"
+       class="btn btn-danger">
+
+        Clear History
+
+    </a>
+
+</form>
+
+<hr>
+
+{% if history %}
+
+    {% for chat in history|reverse %}
+
+        <div class="card mb-4 shadow">
+
+            <div class="card-header">
+
+                <strong>Question</strong>
+
+            </div>
+
+            <div class="card-body">
+
+                {{ chat.question }}
+
+            </div>
+
+        </div>
+
+        <div class="card mb-4">
+
+            <div class="card-header bg-success text-white">
+
+                <strong>Answer</strong>
+
+            </div>
+
+            <div class="card-body">
+
+                {{ chat.answer }}
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+{% else %}
+
+<div class="alert alert-info">
+
+No chat history yet.
+
+</div>
+
+{% endif %}
+
+{% endblock %}

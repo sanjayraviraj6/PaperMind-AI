@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>📝 AI Research Summary</h2>
+
+<form method="POST">
+
+    <button class="btn btn-success">
+
+        Generate Summary
+
+    </button>
+
+</form>
+
+{% if summary %}
+
+<hr>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <pre style="white-space: pre-wrap;">{{ summary }}</pre>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

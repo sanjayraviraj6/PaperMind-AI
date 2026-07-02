@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">Upload Research Papers</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="mb-3">
+
+            <input
+                class="form-control"
+                type="file"
+                name="pdf_files"
+                multiple
+                accept=".pdf">
+
+        </div>
+
+        <button class="btn btn-primary">
+            Upload
+        </button>
+
+    </form>
+
+    <hr>
+
+    <h3>Uploaded Files</h3>
+
+    {% if uploaded_files %}
+
+        <ul class="list-group mb-4">
+
+        {% for file in uploaded_files %}
+
+            <li class="list-group-item">
+                📄 {{ file }}
+            </li>
+
+        {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p>No files uploaded yet.</p>
+
+    {% endif %}
+
+    <hr>
+
+    <h3>Extracted Text</h3>
+
+    {% if extracted_text %}
+
+        <div class="card mb-4">
+
+            <div class="card-body">
+
+                <pre style="white-space: pre-wrap;">{{ extracted_text }}</pre>
+
+            </div>
+
+        </div>
+
+    {% else %}
+
+        <p>No text extracted yet.</p>
+
+    {% endif %}
+
+    <hr>
+
+    <h3>Text Chunks</h3>
+
+    {% if chunks %}
+
+        <p><strong>Total Chunks:</strong> {{ chunks|length }}</p>
+
+        {% for chunk in chunks %}
+
+            <div class="card mb-3">
+
+                <div class="card-header">
+
+                    Chunk {{ loop.index }}
+
+                </div>
+
+                <div class="card-body">
+
+                    <pre style="white-space: pre-wrap;">{{ chunk }}</pre>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No chunks generated yet.</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
