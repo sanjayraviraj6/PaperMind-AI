@@ -1,4 +1,9 @@
-from groq import RateLimitError
+import os
+
+from dotenv import load_dotenv
+from groq import Groq, RateLimitError
+
+load_dotenv()
 
 
 class GroqService:
@@ -10,6 +15,7 @@ class GroqService:
     @classmethod
     def generate(cls, prompt):
 
+        # Limit prompt size
         prompt = prompt[:10000]
 
         try:
@@ -36,8 +42,7 @@ class GroqService:
 
             return (
                 "⚠️ Groq API rate limit reached.\n\n"
-                "Please wait a few minutes and try again, "
-                "or use a different Groq API key."
+                "Please wait until your quota resets or use a new API key."
             )
 
         except Exception as e:

@@ -3,8 +3,10 @@ import os
 from flask import Blueprint
 from flask import current_app
 from flask import flash
+from flask import redirect
 from flask import render_template
 from flask import request
+from flask import url_for
 
 from services.document_service import DocumentService
 from services.rag_service import RAGService
@@ -39,7 +41,6 @@ def upload():
                 extracted_text = result["text"]
                 chunks = result["chunks"]
 
-                # Check if the document already exists
                 if result["already_exists"]:
 
                     flash(
@@ -74,3 +75,30 @@ def upload():
         extracted_text=extracted_text,
         chunks=chunks
     )
+
+
+@upload_bp.route("/delete/<filename>", methods=["POST"])
+def delete_file(filename):
+
+    filepath = os.path.join(
+        current_app.config["UPLOAD_FOLDER"],
+        filename
+    )
+
+    if os.path.exists(filepath):
+
+        os.remove(filepath)
+
+        flash(
+            f"{filename} deleted successfully.",
+            "success"
+        )
+
+    else:
+
+        flash(
+            "File not found.",
+            "danger"
+        )
+
+    return redirect(url_for("upload.upload"))

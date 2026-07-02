@@ -1,53 +1,58 @@
+// Upload page elements
+
 const dropZone = document.getElementById("dropZone");
 const fileInput = document.getElementById("pdf_files");
 const selectedFiles = document.getElementById("selectedFiles");
 
-// Open file picker
-dropZone.addEventListener("click", () => {
-    fileInput.click();
-});
+if (dropZone && fileInput && selectedFiles) {
 
-// Show selected files
-fileInput.addEventListener("change", () => {
-    displayFiles(fileInput.files);
-});
+    // Open file picker
+    dropZone.addEventListener("click", () => {
+        fileInput.click();
+    });
 
-// Drag over
-dropZone.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    dropZone.classList.add("dragover");
-});
+    // Show selected files
+    fileInput.addEventListener("change", () => {
+        displayFiles(fileInput.files);
+    });
 
-// Drag leave
-dropZone.addEventListener("dragleave", () => {
-    dropZone.classList.remove("dragover");
-});
+    // Drag over
+    dropZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropZone.classList.add("dragover");
+    });
 
-// Drop
-dropZone.addEventListener("drop", (e) => {
+    // Drag leave
+    dropZone.addEventListener("dragleave", () => {
+        dropZone.classList.remove("dragover");
+    });
 
-    e.preventDefault();
+    // Drop
+    dropZone.addEventListener("drop", (e) => {
 
-    dropZone.classList.remove("dragover");
+        e.preventDefault();
 
-    fileInput.files = e.dataTransfer.files;
+        dropZone.classList.remove("dragover");
 
-    displayFiles(fileInput.files);
+        fileInput.files = e.dataTransfer.files;
 
-});
+        displayFiles(fileInput.files);
 
-// Display selected filenames
-function displayFiles(files) {
+    });
 
-    selectedFiles.innerHTML = "";
+    function displayFiles(files) {
 
-    for (const file of files) {
+        selectedFiles.innerHTML = "";
 
-        const li = document.createElement("li");
+        for (const file of files) {
 
-        li.textContent = "📄 " + file.name;
+            const li = document.createElement("li");
 
-        selectedFiles.appendChild(li);
+            li.textContent = "📄 " + file.name;
+
+            selectedFiles.appendChild(li);
+
+        }
 
     }
 

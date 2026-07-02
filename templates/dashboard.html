@@ -2,64 +2,97 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container">
 
-    <h1 class="mb-4">
-        📊 Research Dashboard
-    </h1>
+    <div class="text-center mb-5">
 
-    <div class="row">
+        <h1 class="display-5 fw-bold">
+            📊 Research Dashboard
+        </h1>
+
+        <p class="text-muted">
+            Overview of your AI research workspace.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
 
         <div class="col-md-4">
-            <div class="card shadow">
-                <div class="card-body text-center">
-                    <h5>📄 Documents</h5>
-                    <h2>{{ data.total_documents }}</h2>
-                </div>
+
+            <div class="dashboard-card">
+
+                <h1>📄</h1>
+
+                <h2>{{ data.total_documents }}</h2>
+
+                <p>Total Documents</p>
+
             </div>
+
         </div>
 
         <div class="col-md-4">
-            <div class="card shadow">
-                <div class="card-body text-center">
-                    <h5>📑 Chunks</h5>
-                    <h2>{{ data.total_chunks }}</h2>
-                </div>
+
+            <div class="dashboard-card">
+
+                <h1>📑</h1>
+
+                <h2>{{ data.total_chunks }}</h2>
+
+                <p>Total Chunks</p>
+
             </div>
+
         </div>
 
         <div class="col-md-4">
-            <div class="card shadow">
-                <div class="card-body text-center">
-                    <h5>🧠 Embeddings</h5>
-                    <h2>{{ data.total_embeddings }}</h2>
-                </div>
+
+            <div class="dashboard-card">
+
+                <h1>🧠</h1>
+
+                <h2>{{ data.total_embeddings }}</h2>
+
+                <p>Total Embeddings</p>
+
             </div>
+
         </div>
 
     </div>
 
-    <hr class="my-5">
+    <div class="mt-5">
 
-    <h3>📂 Uploaded Documents</h3>
+        <div class="dashboard-list">
 
-    <ul class="list-group">
+            <h3 class="mb-4">
 
-        {% for file in data.uploaded_files %}
+                📂 Uploaded Documents
 
-        <li class="list-group-item">
-            📄 {{ file }}
-        </li>
+            </h3>
 
-        {% else %}
+            {% if data.uploaded_files %}
 
-        <li class="list-group-item text-muted">
-            No documents uploaded yet.
-        </li>
+                {% for file in data.uploaded_files %}
 
-        {% endfor %}
+                    <div class="document-item">
 
-    </ul>
+                        📄 {{ file }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p>No documents uploaded yet.</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
 
 </div>
 

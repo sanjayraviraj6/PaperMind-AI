@@ -23,23 +23,36 @@ class SummaryService:
         prompt = f"""
 You are an expert AI Research Assistant.
 
-Analyze the document excerpts below and create a professional report.
+Read the research paper excerpts below.
 
-Keep the report concise (maximum 400 words).
+Generate a professional report in MARKDOWN.
 
-Return ONLY the following sections.
+Use exactly these headings:
 
-## Executive Summary
+# Executive Summary
 
-## Methodology
+# Research Objective
 
-## Key Findings
+# Methodology
 
-## Conclusion
+# Key Findings
 
-## Future Work
+# Important Concepts
 
-Document:
+# Applications
+
+# Conclusion
+
+# Future Work
+
+Requirements:
+
+- Use markdown headings (#)
+- Use bullet points
+- Keep it under 500 words
+- Do not include any introduction before the first heading.
+
+Research Paper:
 
 {context}
 """

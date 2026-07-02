@@ -1,45 +1,68 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+{% set current = request.path %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
 
     <div class="container">
 
-        <a class="navbar-brand fw-bold" href="/">
-            📚 PaperMind AI
-        </a>
+        <a class="navbar-brand fw-bold fs-4" href="/">
 
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
+    <span class="logo-icon">
+        <i class="bi bi-cpu-fill"></i>
+    </span>
+
+    <span class="logo-text">
+
+        PaperMind <span class="logo-ai">AI</span>
+
+    </span>
+
+</a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar"
+            aria-controls="navbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
 
             <span class="navbar-toggler-icon"></span>
 
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse" id="navbar">
 
             <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link {% if current == '/' %}active{% endif %}" href="/">
+                        <i class="bi bi-house-door"></i> Home
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link {% if current == '/upload' %}active{% endif %}" href="/upload">
+                        <i class="bi bi-cloud-upload"></i> Upload
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/upload">Upload</a>
+                    <a class="nav-link {% if current == '/dashboard' %}active{% endif %}" href="/dashboard">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/summary">Summary</a>
+                    <a class="nav-link {% if current == '/chat' %}active{% endif %}" href="/chat">
+                        <i class="bi bi-chat-dots"></i> Chat
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/chat">Chat</a>
+                    <a class="nav-link {% if current == '/summary' %}active{% endif %}" href="/summary">
+                        <i class="bi bi-file-earmark-text"></i> Summary
+                    </a>
                 </li>
 
             </ul>

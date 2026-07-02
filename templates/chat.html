@@ -2,84 +2,126 @@
 
 {% block content %}
 
-<h1 class="mb-4">💬 AI Research Chat</h1>
+<div class="chat-page">
 
-<form method="POST">
+    <!-- Header -->
+    <div class="chat-header">
 
-    <div class="mb-3">
+        <h1>
+            🤖 AI Research Chat
+        </h1>
 
-        <textarea
-            class="form-control"
-            name="question"
-            rows="3"
-            placeholder="Ask anything about your uploaded paper..."
-            required></textarea>
+        <p>
+            Ask questions about your uploaded research papers.
+        </p>
 
     </div>
 
-    <button class="btn btn-primary">
+    <!-- Chat Box -->
+    <div class="chat-container">
 
-        Ask AI
+        <!-- Messages -->
+        <div class="chat-messages" id="chatMessages">
 
-    </button>
+            {% if chat_history %}
 
-    <a href="/clear_chat"
-       class="btn btn-danger">
+                {% for message in chat_history %}
 
-        Clear History
+                    {% if message.role == "user" %}
 
-    </a>
+                        <div class="message user-message">
 
-</form>
+                            <div class="avatar">
+                                👤
+                            </div>
 
-<hr>
+                            <div class="bubble user">
 
-{% if history %}
+                                {{ message.content }}
 
-    {% for chat in history|reverse %}
+                            </div>
 
-        <div class="card mb-4 shadow">
+                        </div>
 
-            <div class="card-header">
+                    {% else %}
 
-                <strong>Question</strong>
+                        <div class="message ai-message">
 
-            </div>
+                            <div class="avatar">
+                                🤖
+                            </div>
 
-            <div class="card-body">
+                            <div class="bubble ai">
 
-                {{ chat.question }}
+                                {{ message.content }}
 
-            </div>
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="welcome-chat">
+
+                    <div class="welcome-icon">
+                        🤖
+                    </div>
+
+                    <h3>
+                        Welcome to PaperMind AI
+                    </h3>
+
+                    <p>
+                        Upload your research papers and ask questions using AI.
+                    </p>
+
+                </div>
+
+            {% endif %}
 
         </div>
 
-        <div class="card mb-4">
+        <!-- Input -->
+        <form
+            method="POST"
+            action="/chat"
+            class="chat-input-area">
 
-            <div class="card-header bg-success text-white">
+            <div class="chat-input-box">
 
-                <strong>Answer</strong>
+                <textarea
+                    class="form-control"
+                    name="question"
+                    rows="1"
+                    placeholder="Ask anything about your research papers..."
+                    required></textarea>
+
+                <button
+                    type="submit"
+                    class="send-btn">
+
+                    <i class="bi bi-send-fill"></i>
+
+                </button>
 
             </div>
 
-            <div class="card-body">
+        </form>
 
-                {{ chat.answer }}
-
-            </div>
-
-        </div>
-
-    {% endfor %}
-
-{% else %}
-
-<div class="alert alert-info">
-
-No chat history yet.
+    </div>
 
 </div>
 
-{% endif %}
+<script>
+
+const chatMessages = document.getElementById("chatMessages");
+
+chatMessages.scrollTop = chatMessages.scrollHeight;
+
+</script>
 
 {% endblock %}

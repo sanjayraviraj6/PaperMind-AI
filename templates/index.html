@@ -2,28 +2,226 @@
 
 {% block content %}
 
-<div class="text-center mt-5">
+<!-- Hero Section -->
 
-    <h1 class="display-4">📚 PaperMind AI</h1>
+<section class="hero-section">
 
-    <p class="lead">
+    <div class="container">
 
-        Research Smarter with AI
+        <div class="row align-items-center">
 
-    </p>
+            <div class="col-lg-7">
 
-    <p>
+                <h1 class="display-3 fw-bold">
 
-        Upload research papers, generate summaries, and ask intelligent questions using AI.
+                    Research Smarter.<br>
 
-    </p>
+                    <span class="hero-highlight">
 
-    <a href="/upload" class="btn btn-primary btn-lg">
+                        Powered by AI.
 
-        Upload Papers
+                    </span>
 
-    </a>
+                </h1>
 
-</div>
+                <p class="lead mt-4">
+
+                    Upload research papers, generate AI-powered summaries,
+                    ask intelligent questions, and discover insights using
+                    Retrieval-Augmented Generation (RAG).
+
+                </p>
+
+                <div class="mt-4">
+
+                    <a href="/upload" class="btn btn-light btn-lg me-3">
+
+                        <i class="bi bi-cloud-upload"></i>
+
+                        Upload Papers
+
+                    </a>
+
+                    <a href="/chat" class="btn btn-outline-light btn-lg">
+
+                        <i class="bi bi-chat-dots"></i>
+
+                        AI Chat
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-5 text-center">
+
+                <div class="hero-icon">
+
+                    <i class="bi bi-cpu-fill"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Features -->
+
+<section class="mt-5">
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+
+            <div class="feature-card">
+
+                <i class="bi bi-file-earmark-pdf feature-icon"></i>
+
+                <h4>Upload PDFs</h4>
+
+                <p>
+
+                    Upload multiple research papers securely.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="feature-card">
+
+                <i class="bi bi-chat-square-dots feature-icon"></i>
+
+                <h4>AI Chat</h4>
+
+                <p>
+
+                    Ask questions and receive intelligent answers.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="feature-card">
+
+                <i class="bi bi-file-earmark-text feature-icon"></i>
+
+                <h4>AI Summary</h4>
+
+                <p>
+
+                    Generate concise research summaries instantly.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="feature-card">
+
+                <i class="bi bi-speedometer2 feature-icon"></i>
+
+                <h4>Dashboard</h4>
+
+                <p>
+
+                    Monitor uploaded papers and AI analytics.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Workflow -->
+
+<section class="mt-5">
+
+    <div class="card border-0 shadow-lg">
+
+        <div class="card-body p-5">
+
+            <h2 class="text-center mb-5">
+
+                🚀 How PaperMind AI Works
+
+            </h2>
+
+            <div class="row text-center">
+
+                <div class="col-md-2">
+
+                    <i class="bi bi-cloud-upload-fill feature-icon"></i>
+
+                    <h6>Upload</h6>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <i class="bi bi-file-earmark-text-fill feature-icon"></i>
+
+                    <h6>Extract</h6>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <i class="bi bi-grid feature-icon"></i>
+
+                    <h6>Chunk</h6>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <i class="bi bi-cpu feature-icon"></i>
+
+                    <h6>Embed</h6>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <i class="bi bi-database feature-icon"></i>
+
+                    <h6>Retrieve</h6>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <i class="bi bi-stars feature-icon"></i>
+
+                    <h6>AI Answer</h6>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}

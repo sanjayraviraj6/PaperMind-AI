@@ -2,8 +2,6 @@ from flask import Blueprint
 from flask import render_template
 from flask import request
 from flask import session
-from flask import redirect
-from flask import url_for
 
 from services.chat_service import ChatService
 
@@ -18,30 +16,25 @@ def chat():
 
     if request.method == "POST":
 
-        question = request.form["question"]
+        question = request.form.get("question")
 
         answer = ChatService.ask(question)
 
         history = session["chat_history"]
 
-        history.append(
-            {
-                "question": question,
-                "answer": answer
-            }
-        )
+        history.append({
+            "role": "user",
+            "content": question
+        })
+
+        history.append({
+            "role": "assistant",
+            "content": answer
+        })
 
         session["chat_history"] = history
 
     return render_template(
         "chat.html",
-        history=session["chat_history"]
+        chat_history=session["chat_history"]
     )
-
-
-@chat_bp.route("/clear_chat")
-def clear_chat():
-
-    session.pop("chat_history", None)
-
-    return redirect(url_for("chat.chat"))
